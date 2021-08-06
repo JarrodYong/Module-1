@@ -1,8 +1,6 @@
 const int TRIG=9;//These are the trigger and echo pins on the sensor
 const int ECHO=10;//I have put them on pins 9 and 10
-const byte LED=13;
-const byte interruptPin = 2;
-volatile byte state = LOW;
+int LED=13;
 int maxRange=30;//This determines the distance that the LED will
                 //turn off. Smaller numbers will work better.
 float duration, distance;
@@ -26,8 +24,6 @@ void setup()
   pinMode(TRIG,OUTPUT);
   pinMode(ECHO,INPUT);
   pinMode(LED,OUTPUT);
-  pinMode(interruptPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(interruptPin), getdistance, CHANGE );
   digitalWrite(TRIG,LOW);
   Serial.begin(9600);
 }
@@ -54,4 +50,5 @@ void loop()
   Serial.println(distance);
   Serial.print("LED Status: "); //Use serial.print to label the data in the monitor. 
   Serial.println(digitalRead(13));
+  delay(500);
 }
